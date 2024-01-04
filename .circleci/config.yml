@@ -56,7 +56,7 @@ jobs:
       - setup_remote_docker
       - heroku/install
       - docker/pull:
-          images: revvrel/education-space:v1.0.1
+          images: revvrel/education-space:v1.0.0
       - run:
           name: Heroku Container Push with Image From Docker Hub
           command: |

@@ -36,18 +36,35 @@ jobs:
           image: revvrel/education-space
       - docker/push:
           image: revvrel/education-space
-  deploy:
+  # deploy:
+  #   docker:
+  #     - image: cimg/node:16.10
+  #   steps:
+  #     - setup_remote_docker
+  #     - checkout
+  #     - heroku/install
+  #     - run:
+  #         name: Heroku Container Push
+  #         command: |
+  #             heroku container:login
+  #             heroku container:push web -a khairul-su-devops
+  #             heroku container:release web -a khairul-su-devops
+  pull-and-deploy:
     docker:
       - image: cimg/node:16.10
     steps:
       - setup_remote_docker
-      - checkout
       - heroku/install
+      - docker/pull:
+          images: revvrel/education-space:v1.0.1
       - run:
-          name: Heroku Container Push
+          name: Heroku Container Push with Image From Docker Hub
           command: |
               heroku container:login
-              heroku container:push web -a khairul-su-devops
+              docker tag revvrel/education-space:v1.0.1 registry.heroku.com/khairul-su-devops/web
+              # format --- docker tag <image name from docker hub> registry.heroku.com/<app-name>/web
+              docker push registry.heroku.com/khairul-su-devops/web
+              # format --- docker push registry.heroku.com/<app-name>/web
               heroku container:release web -a khairul-su-devops
 
 workflows:
@@ -60,6 +77,6 @@ workflows:
       - publish:
           requires:
             - test
-      - deploy:
+      - pull-and-deploy:
           requires:
             - test

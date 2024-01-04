@@ -26,16 +26,16 @@ jobs:
       - run: |
           echo "Running tests... "
           npm test
-    publish:
-      executor: docker/docker
-      steps:
-        - setup_remote_docker
-        - checkout
-        - docker/check
-        - docker/build:
-            image: revvrel/education-space
-        - docker/push:
-            image: revvrel/education-space
+  publish:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+       - docker/check
+      - docker/build:
+          image: revvrel/education-space
+      - docker/push:
+          image: revvrel/education-space
   deploy:
     docker:
       - image: cimg/node:16.10

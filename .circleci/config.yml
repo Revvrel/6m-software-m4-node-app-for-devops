@@ -61,7 +61,7 @@ jobs:
           name: Heroku Container Push with Image From Docker Hub
           command: |
               heroku container:login
-              docker tag revvrel/education-space:v1.0.1 registry.heroku.com/khairul-su-devops/web
+              docker tag revvrel/education-space:v1.0.0 registry.heroku.com/khairul-su-devops/web
               # format --- docker tag <image name from docker hub> registry.heroku.com/<app-name>/web
               docker push registry.heroku.com/khairul-su-devops/web
               # format --- docker push registry.heroku.com/<app-name>/web

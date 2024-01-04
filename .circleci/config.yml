@@ -33,9 +33,13 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: revvrel/education-space:v1.0.1
+          image: revvrel/education-space
+          tags:
+            - v1.0.1
       - docker/push:
-          image: revvrel/education-space:v1.0.1
+          image: revvrel/education-space
+          tags:
+            - v1.0.1
   # deploy:
   #   docker:
   #     - image: cimg/node:16.10

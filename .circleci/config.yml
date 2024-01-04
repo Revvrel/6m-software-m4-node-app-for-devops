@@ -41,7 +41,6 @@ jobs:
               heroku container:push web -a khairul-su-devops
               heroku container:release web -a khairul-su-devops
 
-
 workflows:
   simple_workflow:
     jobs:

@@ -37,8 +37,9 @@ jobs:
       - docker/check
       - run: docker build -t $IMAGE_NAME .
       - snyk/scan:
+          severity: high
           docker-image-name: $IMAGE_NAME
-          severity: "high, critical"
+          
   publish:
     executor: docker/docker
     steps:

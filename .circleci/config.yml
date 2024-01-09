@@ -4,8 +4,7 @@ orbs:
   node: circleci/node@5.0.1
   docker: circleci/docker@2.1.4
   heroku: circleci/heroku@2.0.0
-  snyk: snyk/snyk@2.0.2
-
+  snyk: snyk/snyk@1.5.0
 jobs:
   build:
     docker:
@@ -39,6 +38,7 @@ jobs:
       - run: docker build -t $IMAGE_NAME .
       - snyk/scan:
           docker-image-name: $IMAGE_NAME
+          severity: "high, critical"
   publish:
     executor: docker/docker
     steps:

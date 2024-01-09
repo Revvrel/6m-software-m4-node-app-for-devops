@@ -94,7 +94,7 @@ workflows:
             - test
       - publish:
           requires:
-            - test
+            - scan
       # - pull-and-deploy:
       #     requires:
       #       - publish
